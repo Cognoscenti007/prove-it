@@ -1,37 +1,163 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Debate Analytics Platform
 
-## Getting Started
+A full-stack analytics platform for competitive debating that centralizes tournament data, tracks long-term performance, and provides statistical insights across debates, motions, speaker roles, partnerships, and tournaments.
 
-First, run the development server:
+The platform automatically imports tournament data from **Tabbycat**, stores it in a normalized PostgreSQL database, and presents interactive analytics through a modern web interface.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Features
+
+### Tournament Management
+
+* Import tournament data directly from Tabbycat
+* Support for both **British Parliamentary (BP)** and **Asian Parliamentary (AP)** formats
+* Automatic synchronization of rounds, motions, teams, speakers, and results
+* Support for both tournament debates and practice mocks
+
+### Motion Library
+
+* Searchable repository of all debated motions
+* Custom motion tagging system
+
+  * Matter tags (Politics, IR, Economics, Criminal Justice, etc.)
+  * Debate tags (Policy, Characterization, Counterfactual, Principles, etc.)
+* Motion filtering by tournament, format, tags, performance, and date
+* Case file management and post-round notes
+
+### Round Analysis
+
+* Complete round overview
+* Speaker scores and team points
+* Position-specific performance analysis
+* Judge feedback and personal notes
+* Flow sheet uploads
+* Case file attachments
+* Motion metadata and tournament statistics
+
+### Analytics Dashboard
+
+* Motion analytics
+* Position analytics
+* Side and bench bias analysis
+* Draw strength and room quality analysis
+* Partner statistics
+* Opponent history
+* Tournament performance tracking
+* Longitudinal career trends
+* Interactive charts and visualizations
+
+### Career Tracking
+
+* Tournament timeline
+* Speaker score progression
+* Win-rate analysis
+* Performance breakdowns
+* Searchable debate history
+
+---
+
+## Technology Stack
+
+### Frontend
+
+* React
+* TypeScript
+* Tailwind CSS
+
+### Backend
+
+* Node.js
+* Express.js
+
+### Database
+
+* PostgreSQL
+* Prisma ORM
+
+### Data Ingestion
+
+* Tabbycat REST API integration
+* Authenticated HTML parsing
+* ETL pipeline for tournament synchronization
+
+---
+
+## Architecture
+
+```
+Tabbycat
+      │
+      ▼
+Import Pipeline
+      │
+      ▼
+PostgreSQL
+      │
+      ▼
+Analytics Engine
+      │
+      ▼
+REST API
+      │
+      ▼
+React Frontend
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Core Analytics
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The platform computes statistical insights using SQL aggregation over historical debate data, including:
 
-## Learn More
+* Average, median and standard deviation of speaker scores
+* Win rates across motion tags
+* Government vs Opposition bias
+* Opening vs Closing bias
+* Speaker role benchmarking
+* Draw strength and room quality
+* Partner and opponent statistics
+* Tournament trend analysis
+* Career progression metrics
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+client/
+    React frontend
 
-## Deploy on Vercel
+server/
+    Express backend
+    REST API
+    Tabbycat ingestion
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+prisma/
+    PostgreSQL schema
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+analytics/
+    SQL analytics engine
 
+uploads/
+    Debate files
+    Flows
+    Case files
+```
+
+---
+
+## Future Work
+
+* Advanced analytics dashboards
+* Custom report generation
+* Tournament comparison
+* Team-level analytics
+* Export to PDF/CSV
+* Public profile sharing
+
+---
+
+## License
+
+This project is intended for educational and personal portfolio purposes.
